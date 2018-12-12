@@ -1,0 +1,118 @@
+
+.logo{
+    padding-top: 40px;
+   text-align: center;
+}
+
+nav{
+    padding: 40px;
+    position: relative;
+    text-align: center;
+}
+
+.navButton{
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background-color:#bc916d;
+    border-radius: 4px;
+    font-family: "Bubbler One",sans-serif,"google";
+    border: none;
+    margin: 5px;
+    font-size: 18px;
+}
+
+button{
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background-color:#bc916d;
+    border-radius: 4px;
+    font-family: "Bubbler One",sans-serif,"google";
+    border: none;
+    font-size: 18px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.formStart{
+    min-height: 150px;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.form{
+    float: center;
+    min-height: 200px;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.formTime{
+    float: center;
+    min-height: 400px;
+    width: 700px;
+    margin: 0 auto;
+}
+.formEnd{
+    min-height: 150px;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.inputBar{
+    height: 30px;
+    width: 350px;
+    font-size: 20px;
+    font-family: "Bubbler One", sans-serif;
+}
+
+h2{
+    font-family: "Bubbler One", sans-serif;
+    font-size: 48px;
+    font-weight: normal;
+    font-style: normal;
+    text-align: left;
+    text-transform: none;
+    color: #bc916d;
+}
+
+h3{
+    font-family: "Bubbler One", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    text-align: left;
+    text-transform: none;
+    color: #bc916d;
+}
+p {
+    font-family: "Bubbler One", sans-serif;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.pageNav{
+    width: 700px;
+    margin: 0 auto;
+
+}
+
+.nextPage{
+    float: right;
+}
+
+.lastPage{
+    float: left;
+}
+
+.availableTime{
+    float: right;
+}
+
+footer{
+    height: 100px;
+}
