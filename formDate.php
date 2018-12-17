@@ -42,7 +42,14 @@
         <title>Datum</title>
     </head>
     <body>
- >
+
+
+    <div class="form">
+        <form>
+            <h2> Kies een datum </h2>
+            <input class="inputBar" type="date" name="lastname">
+        </form>
+    </div>
 
 <div class="pageNav">
     <button class="lastPage"><a href="formMail.php">Vorige pagina</a></button>
