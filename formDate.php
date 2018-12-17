@@ -32,16 +32,23 @@
 </header>
 
 <div class="form">
-    <form>
-        <h2> Kies een datum </h2>
-        <input class="inputBar" type="text" name="date">
-    </form>
-</div>
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Datum</title>
+    </head>
+    <body>
+ >
 
 <div class="pageNav">
     <button class="lastPage"><a href="formMail.php">Vorige pagina</a></button>
     <button class="nextPage"><a href="formTime.php">Volgende pagina</a></button>
 </div>
+
 
 <footer>
 
