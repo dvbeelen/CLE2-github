@@ -95,6 +95,12 @@ p {
     margin-bottom: 40px;
 }
 
+label{
+    font-family: "Bubbler One", sans-serif;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
 .pageNav{
     width: 700px;
     margin: 0 auto;
