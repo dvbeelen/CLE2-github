@@ -1,5 +1,8 @@
 <?php
-
+$name = '';
+if(isset($_POST['submit'])) {
+    $name = $_POST['firstname'];
+}
 ?>
 
 <!doctype html>
@@ -32,6 +35,12 @@
 
 <div class="formEnd">
     <h2> Uw afspraak is gemaakt</h2>
+    <p> Uw afspraak ziet er als volgt uit: <br>
+        Naam: <?= $name ?><br>
+        Telefoonnummer: <br>
+        E-mail: <br>
+        Datum en tijd afspraak: <br>
+    </p>
     <p> U ontvangt een e-mail zodra uw afspraak is goedgekeurd. Als u uw afspraak af wilt zeggen dan kan dat 48 uur van tevoren.
         Heeft u diabetes of reumatische klachten? Vergeet dan geen SIMS-classificatie aan te vragen bij uw huisarts.</p>
 </div>

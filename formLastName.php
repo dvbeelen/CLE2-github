@@ -30,7 +30,6 @@
     </nav>
 </header>
 
-
 <div class="form">
     <form>
         <h2> Wat is uw achternaam? </h2>

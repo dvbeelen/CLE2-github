@@ -31,15 +31,16 @@
 </header>
 
 <div class="form">
-    <form action="">
+    <form action="formEnd.php" method="post">
         <h2> Wat is uw voornaam? </h2>
         <input class="inputBar" type="text" name="firstname">
+        <input type="submit" name="submit">
     </form>
 </div>
 
 <div class="pageNav">
     <button class="lastPage"><a href="index.php">Vorige pagina</a></button>
-    <button class="nextPage"><a href="formLastName.php">Volgende pagina</a></button>
+    <button type="submit" class="nextPage"><a href="formLastName.php">Volgende pagina</a></input></button>
 </div>
 
 <footer>
