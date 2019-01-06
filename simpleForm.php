@@ -1,3 +1,32 @@
+<?php
+    $db = mysqli_connect('localhost', 'root', '', 'pedicure_db');
+
+    if (isset($_POST['submit'])) {
+        $email = mysqli_escape_string($db, $_POST['email']);
+        $password = mysqli_escape_string($db, $_POST['password']);
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $firstname = mysqli_escape_string($db, $_POST['firstname']);
+        $lastname = mysqli_escape_string($db, $_POST['lastname']);
+        $phonenumber = mysqli_escape_string($db, $_POST['phonenumber']);
+        $date = mysqli_escape_string($db, $_POST['date']);
+        $time = mysqli_escape_string($db, $_POST['time']);
+
+
+        $query = "INSERT INTO users (firstname, lastname. email, password, phonenumber, date, time) 
+              VALUES ('$firstname', '$lastname', '$email', '$password', '$phonenumber', '$date', '$time',)";
+
+        if ($result) {
+            echo 'Account created! Ga naar de inlogpagina';
+            exit;
+        } else {
+            $errors[] = 'Something went wrong in your database query: ' . mysqli_error($db);
+        }
+
+        mysqli_query($db, $query);
+        mysqli_close($db);
+
+    }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,18 +57,29 @@
 
 <div class= "appointFolder">
     <form class="form">
-        <label for="firstname">Voornaam:</label> <br>
-        <input type="text" id="firstname"> <br>
-        <label for="lastname">Achternaam:</label> <br>
-        <input type="text" id="firstname"> <br>
         <label for="email">E-mail:</label> <br>
         <input type="email" id="email"> <br>
+
+        <label for="password"> Wachtwoord:</label> <br>
+        <input type="password" id="password"> <br> <br>
+
+        <label for="firstname">Voornaam:</label> <br>
+        <input type="text" id="firstname"> <br>
+
+        <label for="lastname">Achternaam:</label> <br>
+        <input type="text" id="firstname"> <br>
+
         <label for="phonenumber">Telefoonnummer:</label> <br>
         <input type="number" id="phonenumber"> <br>
+
         <label for="date">Kies een datum</label> <br>
         <input type="date" id="date"> <br>
+
         <label for="time">Kies een tijd:</label> <br>
-        <input type="number" id="time"> <br> <br>
-        <button id="submit">Afspraak maken </button>
+        <input type="time" id="time"> <br> <br>
+
+        <input type="submit" name="submit" value="Versturen"/>
+
+        <button id="biggerForm"><a href="index.php">Simpele versie</a></button>
 </div>
 
