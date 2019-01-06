@@ -58,25 +58,25 @@
 <div class= "appointFolder">
     <form class="form">
         <label for="email">E-mail:</label> <br>
-        <input type="email" id="email"> <br>
+        <input type="email" id="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 
         <label for="password"> Wachtwoord:</label> <br>
-        <input type="password" id="password"> <br> <br>
+        <input type="password" id="password" value="<?= isset($password) ? $password : '' ?>"> <br> <br>
 
         <label for="firstname">Voornaam:</label> <br>
-        <input type="text" id="firstname"> <br>
+        <input type="text" id="firstname" value="<?= isset($firstname) ? $firstname : '' ?>"> <br>
 
         <label for="lastname">Achternaam:</label> <br>
-        <input type="text" id="firstname"> <br>
+        <input type="text" id="firstname" value="<?= isset($lastname) ? $lastname : '' ?>"> <br>
 
         <label for="phonenumber">Telefoonnummer:</label> <br>
-        <input type="number" id="phonenumber"> <br>
+        <input type="number" id="phonenumber" value="<?= isset($phonenumber) ? $phonenumber : '' ?>"> <br>
 
         <label for="date">Kies een datum</label> <br>
-        <input type="date" id="date"> <br>
+        <input type="date" id="date" value="<?= isset($date) ? $date : '' ?>"> <br>
 
         <label for="time">Kies een tijd:</label> <br>
-        <input type="time" id="time"> <br> <br>
+        <input type="time" id="time" value="<?= isset($time) ? $time : '' ?>"> <br> <br>
 
         <input type="submit" name="submit" value="Versturen"/>
 
