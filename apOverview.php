@@ -5,9 +5,16 @@ if (isset($_POST['submit'])) {
     $email = mysqli_escape_string($db, $_POST['email']);
     $password = mysqli_escape_string($db, $_POST['password']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $firstname = mysqli_escape_string($db, $_POST['firstname']);
+    $lastname = mysqli_escape_string($db, $_POST['lastname']);
+    $phonenumber = mysqli_escape_string($db, $_POST['phonenumber']);
+    $date = mysqli_escape_string($db, $_POST['date']);
+    $time = mysqli_escape_string($db, $_POST['time']);
 }
+
+    $query = "SELECT * FROM users";
 ?>
-<!doctype html>
+    <!doctype html>
 <html lang="en">
 <head>
     <link rel="icon" type="ïmage/jpg" href="images/smalllogo.jpg"/>
@@ -35,15 +42,13 @@ if (isset($_POST['submit'])) {
     </nav>
 </header>
 
-<a href="apOverview.php"> Skip Login </a>
-<div id="loginForm">
-    <form action="">
-        <label for="email">E-mail</label> <br>
-        <input id="email" type="email"> <br> <br>
+<div id="appointmentInfo">
+    <h2> U afspraak staat als volgt vast:</h2>
+    <p> Dag: </p>
+    <p> Tijd: </p>
 
-        <label for="password">Wachtwoord:</label> <br>
-        <input id="password" type="password"> <br> <br>
-
-        <input type="submit" value="Versturen">
-    </form>
+    <h2> Uw gegevens:</h2>
+    <p> Naam: </p>
+    <p> E-mail: </p>
+    <p> Telefoonnummer: </p>
 </div>

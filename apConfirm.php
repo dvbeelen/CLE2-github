@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
         <button class="navButton"><a href="https://www.didypedicure.nl/">Home</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/aantekeningen/">Aantekeningen</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/prijslijst/">Prijslijst</a></button>
-        <button class="navButton"><a href="">Afspraak Maken</a></button>
+        <button class="navButton"><a href="apForm.php">Afspraak Maken</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/de-praktijk/">De Praktijk</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/contact/">Contact</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
@@ -27,12 +28,5 @@
 </header>
 
 <div id="appointmentInfo">
-    <h2> U afspraak staat als volgt vast:</h2>
-    <p> Dag: </p>
-    <p> Tijd: </p>
-
-    <h2> U gegevens:</h2>
-    <p> Naam: </p>
-    <p> E-mail: </p>
-    <p> Telefoonnummer: </p>
+    <h2> Uw Afspraak is gemaakt!!!!</h2>
 </div>
