@@ -1,6 +1,3 @@
-
-<!doctype html>
-<html lang="en">
 <head>
     <link rel="icon" type="ïmage/jpg" href="images/smalllogo.jpg"/>
     <link href="https://fonts.googleapis.com/css?family=Bubbler+One" rel="stylesheet">
@@ -9,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Uw afspraak</title>
+    <title>Maak een afspraak</title>
 </head>
 <body>
 <header>
@@ -24,15 +21,20 @@
         <button class="navButton"><a href="https://www.didypedicure.nl/de-praktijk/">De Praktijk</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/contact/">Contact</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
+        <button class="navButton"><a href="userLogin.php">Log In</a></button>
     </nav>
 </header>
 
-<div id="apInfo">
-    <h2 id="confirmTextH"> Uw Afspraak is gemaakt.</h2>
-    <p class="confirmTextP">Bedankt! Uw afspraak is gemaakt en is succesvol bij ons ontvangen. Deze ziet er nu als volgt uit:</p>
-    <p class="confirmTextP">Naam: </p>
-    <p class="confirmTextP">E-mail: </p>
-    <p class="confirmTextP">Telefoon: </p>
-    <p class="confirmTextP">Datum: </p>
-    <p class="confirmTextP">Tijd: </p>
-</div>
+<form method="post" action="<?=$_SERVER['REQUEST_URI']; ?>">
+    <div>
+        <label for="email">E-mail:</label>
+        <input id="email" type="email" name="email"/>
+    </div>
+    <div>
+        <label for="password">Wachtwoord:</label>
+        <input id="password" type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" name="submit" value="Login"/>
+    </div>
+</form>

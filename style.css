@@ -122,3 +122,11 @@ label{
 footer{
     height: 100px;
 }
+
+#confirmTextH{
+    text-align: center;
+}
+
+.confirmTextP{
+    text-align: center;
+}

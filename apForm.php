@@ -1,12 +1,7 @@
 <?php
     $db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
 
-    $email = '';
-    $firstname = '';
-    $lastname = '';
-    $phonenumber = '';
-    $apDate = '';
-    $aptime = '';
+
 
     if (isset($_POST['submit'])) {
 
@@ -17,6 +12,7 @@
         $apDate = mysqli_escape_string($db, $_POST['apDate']);
         $apTime = mysqli_escape_string($db, $_POST['apTime']);
 
+        include_once 'form-validation.php';
 
         $query = "INSERT INTO reservations (email, firstname, lastname, phone, apDate, apTime) 
                   VALUES ('$email', '$firstname', '$lastname', '$phonenumber', '$apDate', '$apTime')";
@@ -58,27 +54,29 @@ mysqli_close($db);
         <button class="navButton"><a href="https://www.didypedicure.nl/de-praktijk/">De Praktijk</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/contact/">Contact</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
+        <button class="navButton"><a href="userLogin.php">Log In</a></button>
     </nav>
 </header>
+</header>
 
-<div class= "appointFolder">
+<div class= "appointForm">
     <form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="email">E-mail:</label> <br>
+        <label for="email" >E-mail: <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span></label> <br>
         <input type="email" id="email" name="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 
-        <label for="firstname">Voornaam:</label> <br>
+        <label for="firstname">Voornaam:<?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></label> <br>
         <input type="text" id="firstname" name="firstname" value="<?= isset($firstname) ? $firstname : '' ?>"> <br>
 
-        <label for="lastname">Achternaam:</label> <br>
+        <label for="lastname">Achternaam: <?= isset($errors['lastname']) ? $errors['lastname'] : '' ?></label> <br>
         <input type="text" id="lastname" name="lastname" value="<?= isset($lastname) ? $lastname : '' ?>"> <br>
 
-        <label for="phonenumber">Telefoonnummer:</label> <br>
+        <label for="phonenumber">Telefoonnummer: <?= isset($errors['phone']) ? $errors['phone'] : '' ?></label> <br>
         <input type="number" id="phonenumber" name="phonenumber" value="<?= isset($phonenumber) ? $phonenumber : '' ?>"> <br>
 
-        <label for="apDate">Kies een datum</label> <br>
+        <label for="apDate">Kies een datum <?= isset($errors['date']) ? $errors['date'] : '' ?></label> <br>
         <input type="date" id="apDate" name="apDate" value="<?= isset($apDate) ? $apDate : '' ?>"> <br>
 
-        <label for="apTime">Kies een tijd:</label>
+        <label for="apTime">Kies een tijd: <?= isset($errors['time']) ? $errors['time'] : '' ?></label> <br>
         <select name="apTime" >
             <option> Kies een tijd</option>
             <option> 09:00 </option>
@@ -90,7 +88,7 @@ mysqli_close($db);
         </select>
 
         <div class="data-submit">
-            <input type="submit" name="submit" value="Save"/>
+            <input id ="sendButton" type="submit" name="submit" value="Save"/>
         </div>
     </form>
 </div>
