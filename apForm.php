@@ -88,7 +88,7 @@ mysqli_close($db);
         </select>
 
         <div class="data-submit">
-            <input id ="sendButton" type="submit" name="submit" value="Save"/>
+            <input id ="sendButton" type="submit" name="submit" value="Verstuur"/>
         </div>
     </form>
 </div>

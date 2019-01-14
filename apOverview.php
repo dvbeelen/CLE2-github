@@ -39,16 +39,64 @@ if (isset($_POST['submit'])) {
         <button class="navButton"><a href="https://www.didypedicure.nl/de-praktijk/">De Praktijk</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/contact/">Contact</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
+        <button class="navButton"><a href="adminLogin.php">Log In</a></button>
     </nav>
 </header>
 
 <div id="appointmentInfo">
-    <h2> U afspraak staat als volgt vast:</h2>
-    <p> Dag: </p>
-    <p> Tijd: </p>
-
-    <h2> Uw gegevens:</h2>
-    <p> Naam: </p>
-    <p> E-mail: </p>
-    <p> Telefoonnummer: </p>
+    <h2> Agenda voor komende week:</h2>
+   <div class="weekday">
+       <h2>Maandag</h2>
+        <p>09:00 - 10:00</p>
+        <p>10:00 - 11:00</p>
+        <p>11:00 - 12:00</p>
+        <p> PAUZE </p>
+        <p>13:30 - 14:30</p>
+        <p>14:30 - 15:30</p>
+        <p>15:30 - 16:30</p>
+    </div>
+    <hr>
+    <div class="weekday">
+        <h2>Dinsdag</h2>
+        <p>09:00 - 10:00</p>
+        <p>10:00 - 11:00</p>
+        <p>11:00 - 12:00</p>
+        <p> PAUZE </p>
+        <p>13:30 - 14:30</p>
+        <p>14:30 - 15:30</p>
+        <p>15:30 - 16:30</p>
+    </div>
+    <hr>
+    <div class="weekday">
+        <h2>Woensdag</h2>
+        <p>09:00 - 10:00</p>
+        <p>10:00 - 11:00</p>
+        <p>11:00 - 12:00</p>
+        <p> PAUZE </p>
+        <p>13:30 - 14:30</p>
+        <p>14:30 - 15:30</p>
+        <p>15:30 - 16:30</p>
+    </div>
+    <hr>
+    <div class="weekday">
+        <h2>Donderdag</h2>
+        <p>09:00 - 10:00</p>
+        <p>10:00 - 11:00</p>
+        <p>11:00 - 12:00</p>
+        <p> PAUZE </p>
+        <p>13:30 - 14:30</p>
+        <p>14:30 - 15:30</p>
+        <p>15:30 - 16:30</p>
+    </div>
+    <hr>
+    <div class="weekday">
+        <h2>Vrijdag</h2>
+        <p>09:00 - 10:00</p>
+        <p>10:00 - 11:00</p>
+        <p>11:00 - 12:00</p>
+        <p> PAUZE </p>
+        <p>13:30 - 14:30</p>
+        <p>14:30 - 15:30</p>
+        <p>15:30 - 16:30</p>
+    </div>
 </div>

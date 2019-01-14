@@ -91,7 +91,7 @@ h3{
 }
 p {
     font-family: "Bubbler One", sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 40px;
 }
 
@@ -129,4 +129,28 @@ footer{
 
 .confirmTextP{
     text-align: center;
+}
+
+.weekday {
+    margin: 50px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#appointmentInfo{
+    margin: 50px;
+    text-align: center;
+}
+
+#sendButton{
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background-color:#bc916d;
+    border-radius: 4px;
+    font-family: "Bubbler One",sans-serif,"google";
+    border: none;
+    margin: 5px;
+    font-size: 18px;
+    width: 80px;
 }
