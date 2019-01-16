@@ -59,10 +59,10 @@ if (isset($_SESSION['login'])){
 
 <div class= "appointForm">
     <form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="email" >E-mail: <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span></label> <br>
+        <label for="email" >E-mail: </label> <br>
         <input type="email" id="email" name="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 
-        <label for="firstname">Wachtwoord:<?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></label> <br>
+        <label for="firstname">Wachtwoord:</label> <br>
         <input type="password" id="password" name="password" value="<?= isset($firstname) ? $firstname : '' ?>"> <br>
 
 

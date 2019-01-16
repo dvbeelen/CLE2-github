@@ -23,19 +23,27 @@
         if (empty($email) || empty($firstname) || empty($lastname) || empty($phonenumber) || empty($apDate) || empty($apTime)) {
             header('Location: apForm.php?signup=empty');
             exit();
-            //Form validation: Check if e-mail is not valid
         } else {
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                header('Location: apForm.php?signup=invalidemail');
+            //Form validation: Check if phonenumber is valid
+            $num_length = strlen((string)$phonenumber);
+            if($num_length <= 9 || $num_length >= 11) {
+                header('Location: apForm.php?signup=invalidphone');
                 exit();
-            } else { $result = mysqli_query($db, $query)
-                        or die('Error: ' . $query);
-                if ($result) {
-                    header('Location: apConfirm.php');
+            } else {
+                //Form validation: Check if e-mail is not valid
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    header('Location: apForm.php?signup=invalidemail');
+                    exit();
+                } else {
+                    $result = mysqli_query($db, $query)
+                    or die('Error: ' . $query);
+                    if ($result) {
+                        header('Location: apConfirm.php');
+                    }
                 }
+
             }
         }
-
     }
 
 
@@ -72,22 +80,22 @@ mysqli_close($db);
 
 <div class= "appointForm">
     <form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="email" >E-mail: <span class="errors"><?= isset($errors['email']) ? $errors['email'] : '' ?></span></label> <br>
+        <label for="email" >E-mail:</label> <br>
         <input type="email" id="email" name="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 
-        <label for="firstname">Voornaam:<?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></label> <br>
+        <label for="firstname">Voornaam:</label> <br>
         <input type="text" id="firstname" name="firstname" value="<?= isset($firstname) ? $firstname : '' ?>"> <br>
 
-        <label for="lastname">Achternaam: <?= isset($errors['lastname']) ? $errors['lastname'] : '' ?></label> <br>
+        <label for="lastname">Achternaam: </label> <br>
         <input type="text" id="lastname" name="lastname" value="<?= isset($lastname) ? $lastname : '' ?>"> <br>
 
-        <label for="phonenumber">Telefoonnummer: <?= isset($errors['phone']) ? $errors['phone'] : '' ?></label> <br>
+        <label for="phonenumber">Telefoonnummer:</label> <br>
         <input type="number" id="phonenumber" name="phonenumber" value="<?= isset($phonenumber) ? $phonenumber : '' ?>"> <br>
 
-        <label for="apDate">Kies een datum <?= isset($errors['date']) ? $errors['date'] : '' ?></label> <br>
+        <label for="apDate">Kies een datum: </label> <br>
         <input type="date" id="apDate" name="apDate" value="<?= isset($apDate) ? $apDate : '' ?>"> <br>
 
-        <label for="apTime">Kies een tijd: <?= isset($errors['time']) ? $errors['time'] : '' ?></label> <br>
+        <label for="apTime">Kies een tijd: </label> <br>
         <select name="apTime" >
             <option> Kies een tijd</option>
             <option> 09:00 </option>
@@ -110,10 +118,15 @@ mysqli_close($db);
         echo "<p class='error'> U heeft een veld niet ingevuld </p>";
         exit();
     }
+    elseif (strpos($url, "signup=invalidphone")){
+        echo "<p class='error'> Dit telefoonnummer is te kort </p>";
+        exit();
+    }
     elseif (strpos($url, "signup=invalidemail")){
         echo "<p class='error'> Dit is geen juist e-mailadres </p>";
         exit();
     }
+
     ?>
 </div>
 <footer> </footer>
