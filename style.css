@@ -154,3 +154,19 @@ footer{
     font-size: 18px;
     width: 80px;
 }
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.error{
+    color: red;
+    text-align: center;
+}
+
+#sendButton{
+    margin-top: 20px;
+}
+
+footer{
+    height: 100px;
+}

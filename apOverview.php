@@ -1,20 +1,19 @@
 <?php
-$db = mysqli_connect('localhost', 'root', '', 'pedicure_db');
+session_start();
 
-if (isset($_POST['submit'])) {
-    $email = mysqli_escape_string($db, $_POST['email']);
-    $password = mysqli_escape_string($db, $_POST['password']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $firstname = mysqli_escape_string($db, $_POST['firstname']);
-    $lastname = mysqli_escape_string($db, $_POST['lastname']);
-    $phonenumber = mysqli_escape_string($db, $_POST['phonenumber']);
-    $date = mysqli_escape_string($db, $_POST['date']);
-    $time = mysqli_escape_string($db, $_POST['time']);
+//May I even visit this page?
+if (!isset($_SESSION['login'])){
+    header('Location: login.php');
+    exit;
 }
 
-    $query = "SELECT * FROM users";
+$email = $_SESSION['login'];
+
+
+
 ?>
-    <!doctype html>
+
+<!doctype html>
 <html lang="en">
 <head>
     <link rel="icon" type="ïmage/jpg" href="images/smalllogo.jpg"/>
@@ -39,9 +38,10 @@ if (isset($_POST['submit'])) {
         <button class="navButton"><a href="https://www.didypedicure.nl/de-praktijk/">De Praktijk</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/contact/">Contact</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
-        <button class="navButton"><a href="adminLogin.php">Log In</a></button>
+        <button class="navButton"><a href="logout.php">Uitloggen</a></button>
     </nav>
 </header>
+
 
 <div id="appointmentInfo">
     <h2> Agenda voor komende week:</h2>

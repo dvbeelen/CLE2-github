@@ -1,3 +1,34 @@
+<?php
+session_start();
+//Check if post isset
+
+if (isset($_POST['submit'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    //Security checks Tip: make this way more secure!
+    if($email == "" || $password == ""){
+        $error = "Vul beide gegevens in!";
+    }
+
+    elseif($email!= "info@didyooms.nl" || $password != "wachtwoord"){
+        $error = "Combinatie gebruikersnaam /wachtwoord onjuist";
+    }
+
+    if (!isset($error)){
+        $_SESSION['login'] = $email;
+    }
+}
+// Am i logged in? Please go to secure page
+
+if (isset($_SESSION['login'])){
+    header('Location: apOverview.php');
+    exit;
+}
+
+?>
+
+
 <head>
     <link rel="icon" type="ïmage/jpg" href="images/smalllogo.jpg"/>
     <link href="https://fonts.googleapis.com/css?family=Bubbler+One" rel="stylesheet">
@@ -32,7 +63,7 @@
         <input type="email" id="email" name="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 
         <label for="firstname">Wachtwoord:<?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></label> <br>
-        <input type="text" id="password" name="password" value="<?= isset($firstname) ? $firstname : '' ?>"> <br>
+        <input type="password" id="password" name="password" value="<?= isset($firstname) ? $firstname : '' ?>"> <br>
 
 
         <div class="data-submit">

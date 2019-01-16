@@ -12,20 +12,32 @@
         $apDate = mysqli_escape_string($db, $_POST['apDate']);
         $apTime = mysqli_escape_string($db, $_POST['apTime']);
 
-        include_once 'form-validation.php';
 
         $query = "INSERT INTO reservations (email, firstname, lastname, phone, apDate, apTime) 
                   VALUES ('$email', '$firstname', '$lastname', '$phonenumber', '$apDate', '$apTime')";
 
-        $result = mysqli_query($db, $query)
-        or die('Error: ' . $query);
 
 
-        if ($result){
-            header('Location: apConfirm.php');
+
+        //Form validation: Check if input is empty
+        if (empty($email) || empty($firstname) || empty($lastname) || empty($phonenumber) || empty($apDate) || empty($apTime)) {
+            header('Location: apForm.php?signup=empty');
+            exit();
+            //Form validation: Check if e-mail is not valid
+        } else {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                header('Location: apForm.php?signup=invalidemail');
+                exit();
+            } else { $result = mysqli_query($db, $query)
+                        or die('Error: ' . $query);
+                if ($result) {
+                    header('Location: apConfirm.php');
+                }
+            }
         }
 
     }
+
 
 mysqli_close($db);
 
@@ -54,9 +66,8 @@ mysqli_close($db);
         <button class="navButton"><a href="https://www.didypedicure.nl/de-praktijk/">De Praktijk</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/contact/">Contact</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
-        <button class="navButton"><a href="userLogin.php">Log In</a></button>
+        <button class="navButton"><a href="adminLogin.php">Log In</a></button>
     </nav>
-</header>
 </header>
 
 <div class= "appointForm">
@@ -86,9 +97,24 @@ mysqli_close($db);
             <option> 14:30 </option>
             <option> 15:30 </option>
         </select>
-
         <div class="data-submit">
             <input id ="sendButton" type="submit" name="submit" value="Verstuur"/>
         </div>
     </form>
+
+    <?php
+    //Error Messages
+    $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    if (strpos($url, "signup=empty")){
+        echo "<p class='error'> U heeft een veld niet ingevuld </p>";
+        exit();
+    }
+    elseif (strpos($url, "signup=invalidemail")){
+        echo "<p class='error'> Dit is geen juist e-mailadres </p>";
+        exit();
+    }
+    ?>
 </div>
+<footer> </footer>
+</body>
