@@ -32,10 +32,7 @@
 
 <div id="apInfo">
     <h2 id="confirmTextH"> Uw Afspraak is gemaakt.</h2>
-    <p class="confirmTextP">Bedankt! Uw afspraak is gemaakt en is succesvol bij ons ontvangen. Deze ziet er nu als volgt uit:</p>
-    <p class="confirmTextP">Naam: </p>
-    <p class="confirmTextP">E-mail: </p>
-    <p class="confirmTextP">Telefoon: </p>
-    <p class="confirmTextP">Datum: </p>
-    <p class="confirmTextP">Tijd: </p>
+    <p class="confirmTextP">Bedankt! Uw afspraak is gemaakt en is succesvol bij ons ontvangen. U heeft van ons een e-mail ontvangen
+                            met daarin alle informatie voor uw afspraak. Wij zien u graag binnekort in de praktijk.</p>
+
 </div>

@@ -1,10 +1,10 @@
 <?php
     $db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
-
-
+    
 
     if (isset($_POST['submit'])) {
 
+        $id = mysqli_escape_string($db, $_POST['íd']);
         $email = mysqli_escape_string($db, $_POST['email']);
         $firstname = mysqli_escape_string($db, $_POST['firstname']);
         $lastname = mysqli_escape_string($db, $_POST['lastname']);
@@ -105,6 +105,8 @@ mysqli_close($db);
             <option> 14:30 </option>
             <option> 15:30 </option>
         </select>
+
+
         <div class="data-submit">
             <input id ="sendButton" type="submit" name="submit" value="Verstuur"/>
         </div>

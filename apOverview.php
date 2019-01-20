@@ -9,6 +9,18 @@ if (!isset($_SESSION['login'])){
 
 $email = $_SESSION['login'];
 
+$db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
+//Get the result set from the database with a SQL query
+$query = "SELECT * FROM reservations";
+$result = mysqli_query($db, $query);
+
+//Loop through the result to create a custom array
+$reservations = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $reservations[] = $row;
+}
+//Close connection
+mysqli_close($db);
 
 
 ?>
@@ -42,8 +54,32 @@ $email = $_SESSION['login'];
     </nav>
 </header>
 
+<table>
+    <thead>
+    <tr>
+        <th>Voornaam</th>
+        <th>Achternaam</th>
+        <th>E-mail</th>
+        <th>Telefoonnummer</th>
+        <th>Datum Afspraak</th>
+        <th>Tijd Afspraak</th>
 
-<div id="appointmentInfo">
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($reservations as $reservation) { ?>
+        <tr>
+            <td><?= $reservation['firstname']; ?></td>
+            <td><?= $reservation['lastname']; ?></td>
+            <td><?= $reservation['email']; ?></td>
+            <td><?= $reservation['phone']; ?></td>
+            <td><?= $reservation['apDate']; ?></td>
+            <td><?= $reservation['apTime']; ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+<!-- <div id="appointmentInfo">
     <h2> Agenda voor komende week:</h2>
    <div class="weekday">
        <h2>Maandag</h2>
@@ -99,4 +135,6 @@ $email = $_SESSION['login'];
         <p>14:30 - 15:30</p>
         <p>15:30 - 16:30</p>
     </div>
-</div>
+</div> -->
+
+</body>
