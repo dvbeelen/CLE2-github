@@ -1,31 +1,43 @@
 <?php
 session_start();
 //Check if post isset
+$db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
 
-if (isset($_POST['submit'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    //Security checks Tip: make this way more secure!
-    if($email == "" || $password == ""){
-        $error = "Vul beide gegevens in!";
-    }
-
-    elseif($email!= "info@didyooms.nl" || $password != "wachtwoord"){
-        $error = "Combinatie gebruikersnaam /wachtwoord onjuist";
-    }
-
-    if (!isset($error)){
-        $_SESSION['login'] = $email;
-    }
-}
-// Am i logged in? Please go to secure page
-
-if (isset($_SESSION['login'])){
-    header('Location: apOverview.php');
+if (isset($_SESSION['login'])) {
+    header("Location: apOverview.php");
     exit;
 }
-
+//If form is posted, lets validate!
+if (isset($_POST['submit'])) {
+    //Retrieve values (email safe for query)
+    $email = mysqli_escape_string($db, $_POST['email']);
+    $password = $_POST['password'];
+    //Get password & name from DB
+    $query = "SELECT id, password FROM users
+              WHERE email = '$email'";
+    $result = mysqli_query($db, $query);
+    $user = mysqli_fetch_assoc($result);
+    //Check if email exists in database
+    $errors = [];
+    if ($user) {
+        //Validate password
+        if (password_verify($password, $user['password'])) {
+            //Set email for later use in Session
+            $_SESSION['login'] = [
+                'name' => $user['name'],
+                'id' => $user['id']
+            ];
+            //Redirect to secure.php & exit script
+            header("Location: apOverview.php");
+            exit;
+        } else {
+            $errors[] = 'Uw wachtwoord is onjuist';
+        }
+    } else {
+        $errors[] = 'Uw email komt niet voor in de database';
+    }
+}
+?>
 ?>
 
 

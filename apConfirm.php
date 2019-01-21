@@ -27,12 +27,14 @@
         <button class="navButton"><a href="https://www.didypedicure.nl/de-praktijk/">De Praktijk</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/contact/">Contact</a></button>
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
+        <button class="navButton"><a href="adminLogin.php">Log In</a></button>
     </nav>
 </header>
 
 <div id="apInfo">
     <h2 id="confirmTextH"> Uw Afspraak is gemaakt.</h2>
-    <p class="confirmTextP">Bedankt! Uw afspraak is gemaakt en is succesvol bij ons ontvangen. U heeft van ons een e-mail ontvangen
-                            met daarin alle informatie voor uw afspraak. Wij zien u graag binnekort in de praktijk.</p>
+    <p class="confirmTextP">Bedankt! Uw afspraak is gemaakt en is succesvol bij ons ontvangen. <br>
+        U heeft van ons een e-mail ontvangen met daarin alle informatie voor uw afspraak. <br>
+        Wij zien u graag binnekort in de praktijk.</p>
 
 </div>

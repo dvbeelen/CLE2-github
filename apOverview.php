@@ -3,11 +3,11 @@ session_start();
 
 //May I even visit this page?
 if (!isset($_SESSION['login'])){
-    header('Location: login.php');
+    header('Location: adminLogin.php');
     exit;
 }
 
-$email = $_SESSION['login'];
+
 
 $db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
 //Get the result set from the database with a SQL query
@@ -53,7 +53,7 @@ mysqli_close($db);
         <button class="navButton"><a href="logout.php">Uitloggen</a></button>
     </nav>
 </header>
-
+<button><a href="apForm.php"> Nieuwe afspraak </a></button>
 <table>
     <thead>
     <tr>
@@ -63,7 +63,6 @@ mysqli_close($db);
         <th>Telefoonnummer</th>
         <th>Datum Afspraak</th>
         <th>Tijd Afspraak</th>
-
     </tr>
     </thead>
     <tbody>
@@ -75,66 +74,11 @@ mysqli_close($db);
             <td><?= $reservation['phone']; ?></td>
             <td><?= $reservation['apDate']; ?></td>
             <td><?= $reservation['apTime']; ?></td>
+            <td><button><a href="apUpdate.php?id=<?= $reservation['id']; ?>">Wijzigen</a></button></td>
+            <td><button onclick="return confirm('Weet u zeker dat u deze afspraak wilt verwijderen?');"> <a href="delete.php?id=<?= $reservation['id']; ?>">Verwijderen</a></button></td>
+
         </tr>
     <?php } ?>
     </tbody>
 </table>
-<!-- <div id="appointmentInfo">
-    <h2> Agenda voor komende week:</h2>
-   <div class="weekday">
-       <h2>Maandag</h2>
-        <p>09:00 - 10:00</p>
-        <p>10:00 - 11:00</p>
-        <p>11:00 - 12:00</p>
-        <p> PAUZE </p>
-        <p>13:30 - 14:30</p>
-        <p>14:30 - 15:30</p>
-        <p>15:30 - 16:30</p>
-    </div>
-    <hr>
-    <div class="weekday">
-        <h2>Dinsdag</h2>
-        <p>09:00 - 10:00</p>
-        <p>10:00 - 11:00</p>
-        <p>11:00 - 12:00</p>
-        <p> PAUZE </p>
-        <p>13:30 - 14:30</p>
-        <p>14:30 - 15:30</p>
-        <p>15:30 - 16:30</p>
-    </div>
-    <hr>
-    <div class="weekday">
-        <h2>Woensdag</h2>
-        <p>09:00 - 10:00</p>
-        <p>10:00 - 11:00</p>
-        <p>11:00 - 12:00</p>
-        <p> PAUZE </p>
-        <p>13:30 - 14:30</p>
-        <p>14:30 - 15:30</p>
-        <p>15:30 - 16:30</p>
-    </div>
-    <hr>
-    <div class="weekday">
-        <h2>Donderdag</h2>
-        <p>09:00 - 10:00</p>
-        <p>10:00 - 11:00</p>
-        <p>11:00 - 12:00</p>
-        <p> PAUZE </p>
-        <p>13:30 - 14:30</p>
-        <p>14:30 - 15:30</p>
-        <p>15:30 - 16:30</p>
-    </div>
-    <hr>
-    <div class="weekday">
-        <h2>Vrijdag</h2>
-        <p>09:00 - 10:00</p>
-        <p>10:00 - 11:00</p>
-        <p>11:00 - 12:00</p>
-        <p> PAUZE </p>
-        <p>13:30 - 14:30</p>
-        <p>14:30 - 15:30</p>
-        <p>15:30 - 16:30</p>
-    </div>
-</div> -->
-
 </body>
