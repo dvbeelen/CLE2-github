@@ -1,9 +1,7 @@
 <?php
-    $db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
-
-
-
+$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
     if (isset($_POST['submit'])) {
+
 
         $id = mysqli_escape_string($db, $_POST['íd']);
         $email = mysqli_escape_string($db, $_POST['email']);

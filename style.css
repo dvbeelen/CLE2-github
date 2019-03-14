@@ -191,3 +191,12 @@ th, td{
 #updateTitle {
    text-align: center;
 }
+
+#newAp{
+    float:right;
+    margin-right: 125px;
+}
+
+#overviewHeader{
+    text-align: center;
+}

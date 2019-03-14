@@ -1,7 +1,7 @@
 <?php
 session_start();
 //Check if post isset
-$db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
+$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 
 if (isset($_SESSION['login'])) {
     header("Location: apOverview.php");

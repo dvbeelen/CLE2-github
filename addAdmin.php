@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
 //Require database in this file & image helpers
-    $db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
+    $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 //Postback with the data showed to the user, first retrieve data from 'Super global'
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password = mysqli_real_escape_string($db, $_POST['password']);

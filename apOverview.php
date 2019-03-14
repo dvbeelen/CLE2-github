@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])){
 
 
 
-$db = mysqli_connect('localhost', 'root', '', 'db_pedicure');
+$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 //Get the result set from the database with a SQL query
 $query = "SELECT * FROM reservations";
 $result = mysqli_query($db, $query);
@@ -52,8 +52,9 @@ mysqli_close($db);
         <button class="navButton"><a href="https://www.didypedicure.nl/privacy/">Privacy</a></button>
         <button class="navButton"><a href="logout.php">Uitloggen</a></button>
     </nav>
+    <h2 id ="overviewHeader"> Alle afspraken</h2>
 </header>
-<button><a href="apForm.php"> Nieuwe afspraak </a></button>
+<button id ="newAp"><a href="apForm.php"> Nieuwe afspraak </a></button>
 <table>
     <thead>
     <tr>
