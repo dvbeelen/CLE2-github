@@ -1,4 +1,5 @@
 <?php
+
 $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
     if (isset($_POST['submit'])) {
 
