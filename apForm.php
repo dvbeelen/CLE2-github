@@ -1,9 +1,13 @@
 <?php
+//Call on PHPMailer Library
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'phpmailer/vendor/autoload.php';
 
+//Connect to database
 $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
+
     if (isset($_POST['submit'])) {
-
-
         $id = mysqli_escape_string($db, $_POST['íd']);
         $email = mysqli_escape_string($db, $_POST['email']);
         $firstname = mysqli_escape_string($db, $_POST['firstname']);
@@ -12,42 +16,88 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
         $apDate = mysqli_escape_string($db, $_POST['apDate']);
         $apTime = mysqli_escape_string($db, $_POST['apTime']);
 
-
         $query = "INSERT INTO reservations (email, firstname, lastname, phone, apDate, apTime) 
                   VALUES ('$email', '$firstname', '$lastname', '$phonenumber', '$apDate', '$apTime')";
 
-
-
-
-        //Form validation: Check if input is empty
+        //Form validation: Check if any input-fields are empty
         if (empty($email) || empty($firstname) || empty($lastname) || empty($phonenumber) || empty($apDate) || empty($apTime)) {
             header('Location: apForm.php?signup=empty');
             exit();
-        } else {
-            //Form validation: Check if phonenumber is valid
+        }
+        //Form validation: Check if the given phonenumber is of valid length
+        else {
             $num_length = strlen((string)$phonenumber);
             if($num_length <= 9 || $num_length >= 11) {
                 header('Location: apForm.php?signup=invalidphone');
                 exit();
-            } else {
-                //Form validation: Check if e-mail is not valid
+            }
+
+            //Form validation: Check if given e-mail is valid
+            else {
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     header('Location: apForm.php?signup=invalidemail');
                     exit();
-                } else {
+                }
+
+                //If form is filled in correctly, send result to database.
+                else {
                     $result = mysqli_query($db, $query)
                     or die('Error: ' . $query);
-                    if ($result) {
+                   //If result is send, user is redirected to confirmation page
+                    if ($result)
                         header('Location: apConfirm.php');
+
+                    //If result is send, an e-mail with the name, date and time from the fom is send to the given email
+                        $mail = new PHPMailer(true);
+                        try {
+                            //Server settings
+                            $mail->IsSMTP(); // enable SMTP
+                            $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+                            $mail->SMTPAuth = true; // authentication enabled
+                            $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+                            $mail->Host = "smtp.gmail.com";
+                            $mail->Port = 465; // or 58
+                            $mail->Username = '0959940hr@gmail.com';                 // SMTP username
+                            $mail->Password = 'g31h3m_ww';                           // SMTP password
+
+
+                            //
+                            $mail->setFrom('0959940hr@gmail.com', 'D van Beelen');
+                            $mail->addAddress($email, $firstname);
+
+
+                            //This is the body and content of the e-mail
+                            $mail->isHTML(true); // The e-mail is now sent in an HTML format
+                            $mail->Subject = 'Uw afspraak voor '.$apDate.'.'; //Subject of the e-mail
+                            $mail->Body ='Beste '.$firstname.', <br> <br>
+                             U ontvangt deze mail ter bevestiging van uw afspraak. Uw afspraak staat gepland op '.$apDate.' om '.$apTime.' <br> <br>
+                            Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer  06-40303008 <br> <br>
+                            Ik zie u graag binnenkort in de praktijk. <br> <br>
+                            Met vriendelijke groet, <br>
+                            Didy Pedicure';
+
+                            $mail->AltBody = 'Beste '.$firstname.', <br> <br>
+                            U ontvangt deze mail ter bevestiging van uw afspraak. Uw afspraak staat gepland op '.$apDate.' om '.$apTime.' <br> <br>
+                            Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer 06-40303008 <br> <br>
+                            Ik zie u graag binnenkort in de praktijk. <br> <br>
+                            Met vriendelijke groet, <br>
+                            Didy Pedicure';
+
+                            $mail->send();
+//                            echo 'Message has been sent';
+                            } catch (Exception $e) {
+//                            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                            }
+
+                        }
                     }
                 }
 
-            }
-        }
+
+
     }
-
-
-mysqli_close($db);
+    //Close connection to database.
+    mysqli_close($db);
 
     ?>
 
@@ -115,15 +165,17 @@ mysqli_close($db);
     <?php
     //Error Messages
     $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
+    //Form validation: This is the message the user recieves if one or multiple fields are empty.
     if (strpos($url, "signup=empty")){
         echo "<p class='error'> U heeft een veld niet ingevuld </p>";
         exit();
     }
+    //Form validation: This is the message the user recieves if the given phonenumber is too short or too long.
     elseif (strpos($url, "signup=invalidphone")){
         echo "<p class='error'> Dit telefoonnummer is te kort </p>";
         exit();
     }
+    //Form validation: This is the message the user recieves if the given e-mail is invalid.
     elseif (strpos($url, "signup=invalidemail")){
         echo "<p class='error'> Dit is geen juist e-mailadres </p>";
         exit();

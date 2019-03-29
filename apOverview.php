@@ -1,16 +1,16 @@
 <?php
 session_start();
 
-//May I even visit this page?
+//If user is not logged in, get redirected to log-in page.
 if (!isset($_SESSION['login'])){
     header('Location: adminLogin.php');
     exit;
 }
 
-
-
+//Connect to database.
 $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
-//Get the result set from the database with a SQL query
+
+//Get the result set from the database with an SQL query
 $query = "SELECT * FROM reservations";
 $result = mysqli_query($db, $query);
 
@@ -54,7 +54,10 @@ mysqli_close($db);
     </nav>
     <h2 id ="overviewHeader"> Alle afspraken</h2>
 </header>
+<!--Redirect user to page where a new appointment can be created.-->
 <button id ="newAp"><a href="apForm.php"> Nieuwe afspraak </a></button>
+
+<!--Results from database-query is looped into the table-->
 <table>
     <thead>
     <tr>
@@ -75,7 +78,11 @@ mysqli_close($db);
             <td><?= $reservation['phone']; ?></td>
             <td><?= $reservation['apDate']; ?></td>
             <td><?= $reservation['apTime']; ?></td>
+
+            <!--Redirect user to update page.-->
             <td><button><a href="apUpdate.php?id=<?= $reservation['id']; ?>">Wijzigen</a></button></td>
+
+            <!--User is given an error prompt to avoid accidental delete of appointments.-->
             <td><button onclick="return confirm('Weet u zeker dat u deze afspraak wilt verwijderen?');"> <a href="delete.php?id=<?= $reservation['id']; ?>">Verwijderen</a></button></td>
 
         </tr>

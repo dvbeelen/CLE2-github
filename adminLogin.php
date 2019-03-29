@@ -1,22 +1,27 @@
 <?php
 session_start();
-//Check if post isset
+
+//Connect to database
 $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 
+//If user is already logged in, this page is skipped.
 if (isset($_SESSION['login'])) {
     header("Location: apOverview.php");
     exit;
 }
-//If form is posted, lets validate!
+//If form is posted, the given user-information is validated.
 if (isset($_POST['submit'])) {
-    //Retrieve values (email safe for query)
+
+    //Retrieve values
     $email = mysqli_escape_string($db, $_POST['email']);
     $password = $_POST['password'];
+
     //Get password & name from DB
     $query = "SELECT id, password FROM users
               WHERE email = '$email'";
     $result = mysqli_query($db, $query);
     $user = mysqli_fetch_assoc($result);
+
     //Check if email exists in database
     $errors = [];
     if ($user) {
@@ -27,14 +32,16 @@ if (isset($_POST['submit'])) {
                 'name' => $user['name'],
                 'id' => $user['id']
             ];
-            //Redirect to secure.php & exit script
+            //Redirect to appointment overview & exit script
             header("Location: apOverview.php");
             exit;
+            //If password is incorrect, this message is shown.
         } else {
             $errors[] = 'Uw wachtwoord is onjuist';
         }
+        //If given e-mail is incorrect or doesn't exist in the database, this message is shown.
     } else {
-        $errors[] = 'Uw email komt niet voor in de database';
+        $errors[] = 'Er bestaat geen account dat aan dit e-mailadres gekoppeld is';
     }
 }
 ?>

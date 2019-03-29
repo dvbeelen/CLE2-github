@@ -1,18 +1,16 @@
 <?php
 session_start();
 
-//May I even visit this page?
+//If user is not logged in, get redirected to log-in page.
 if (!isset($_SESSION['login'])){
     header('Location: adminLogin.php');
     exit;
 }
 
-
-
+//Connect to database.
 $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 
 if (isset($_POST['submit'])) {
-
     $apid = mysqli_escape_string($db, $_POST['id']);
     $firstname = mysqli_escape_string($db, $_POST['firstname']);
     $lastname = mysqli_escape_string($db, $_POST['lastname']);
@@ -20,7 +18,6 @@ if (isset($_POST['submit'])) {
     $phonenumber = mysqli_escape_string($db, $_POST['phonenumber']);
     $apDate = mysqli_escape_string($db, $_POST['apDate']);
     $apTime = mysqli_escape_string($db, $_POST['apTime']);
-
 
     $reservation = [
         'firstname' => $firstname,
@@ -30,7 +27,6 @@ if (isset($_POST['submit'])) {
         'apDate' => $apDate,
         'apTime' => $apTime,
     ];
-
         //Update the record in the database
         $query = "UPDATE reservations
                   SET firstname = '$firstname', lastname = '$lastname', email = '$email', phone = '$phonenumber', apDate = '$apDate', apTime = '$apTime'
@@ -45,8 +41,9 @@ if (isset($_POST['submit'])) {
         }
 
 } else {
-    //Retrieve the GET parameter from the 'Super global'
+    //Retrieve the id of the appointment 
     $apid = $_GET['id'];
+
     //Get the record from the database result
     $query = "SELECT * FROM reservations WHERE id = " . mysqli_escape_string($db, $apid);
     $result = mysqli_query($db, $query);
