@@ -1,21 +1,27 @@
 <?php
 if (isset($_POST['submit'])) {
-//Require database in this file & image helpers
+//Connect to database
     $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
-//Postback with the data showed to the user, first retrieve data from 'Super global'
+
+// The data filled in in the form is send to the database. 
     $email = mysqli_real_escape_string($db, $_POST['email']);
+
+// Passwords are hashed before being put into the database, thus storing them safely in the database.
     $password = mysqli_real_escape_string($db, $_POST['password']);
     $password = PASSWORD_HASH($_POST['password'], PASSWORD_DEFAULT);
-//Special check for add form only
-    if (empty($errors)) {
-        //Save the record to the database
-        $query = "INSERT INTO users (email, password)
-                  VALUES ('$email', '$password')";
-        $result = mysqli_query($db, $query)
-        or die('Error: ' . $query);
-        if ($result) {
-            header('Location: apOverview.php');
-            exit;
+
+//Save the record to the database
+    $query = "INSERT INTO users (email, password)
+                VALUES ('$email', '$password')";
+    $result = mysqli_query($db, $query)
+    or die('Error: ' . $query);
+        
+//If the query is executed succesfully, the user is redirected to the overviewpage. 
+    if ($result) {
+        header('Location: apOverview.php');
+        exit;
+
+// If the query has not been excecuted correctly, the user recieves an error. 
         } else {
             $errors[] = 'Something went wrong in your database query: ' . mysqli_error($db);
         }
