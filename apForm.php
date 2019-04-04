@@ -7,8 +7,12 @@ require 'phpmailer/vendor/autoload.php';
 //Connect to database
 $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 
+
+//If the form is submitted, the following tasks are performed
     if (isset($_POST['submit'])) {
-        $id = mysqli_escape_string($db, $_POST['íd']);
+
+        //Protects against SQL-injections
+        $id = mysqli_escape_string($db, $_POST['id']);
         $email = mysqli_escape_string($db, $_POST['email']);
         $firstname = mysqli_escape_string($db, $_POST['firstname']);
         $lastname = mysqli_escape_string($db, $_POST['lastname']);
@@ -16,6 +20,8 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
         $apDate = mysqli_escape_string($db, $_POST['apDate']);
         $apTime = mysqli_escape_string($db, $_POST['apTime']);
 
+
+        //The filled-in POST-data is inserted into the database
         $query = "INSERT INTO reservations (email, firstname, lastname, phone, apDate, apTime) 
                   VALUES ('$email', '$firstname', '$lastname', '$phonenumber', '$apDate', '$apTime')";
 
@@ -129,7 +135,8 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 </header>
 
 <div class= "appointForm">
-    <form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<!-- Here, trough htmlspecialchars, the database is prevented from getting JS or HTML code injected into it. -->
+    <form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <label for="email" >E-mail:</label> <br>
         <input type="email" id="email" name="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 
