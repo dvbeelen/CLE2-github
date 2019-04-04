@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 // If the query has not been excecuted correctly, the user recieves an error. 
         } else {
             $errors[] = 'Something went wrong in your database query: ' . mysqli_error($db);
-        }
+            exit;
         //Close connection
         mysqli_close($db);
     }
