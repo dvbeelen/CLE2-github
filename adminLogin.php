@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
 </header>
 
 <div class= "appointForm">
-    <form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form class="form" action="<<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>" method="post">
         <label for="email" >E-mail: </label> <br>
         <input type="email" id="email" name="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 

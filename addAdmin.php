@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     <title>Document</title>
 </head>
 <body>
-<form action="" method="post" enctype="multipart/form-data">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
     <input type="text" name="email" value=""/>
     <input type="password" name="password" value=""/>
     <input type="submit" name="submit" value="Verzenden"/>
