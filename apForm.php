@@ -84,7 +84,7 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 
                             $mail->AltBody = 'Beste '.$firstname.', <br> <br>
                             U ontvangt deze mail ter bevestiging van uw afspraak. Uw afspraak staat gepland op '.$apDate.' om '.$apTime.' <br> <br>
-                            Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer 06-40303008 <br> <br>
+                            Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer 06-xxxxxxxx <br> <br>
                             Ik zie u graag binnenkort in de praktijk. <br> <br>
                             Met vriendelijke groet, <br>
                             Didy Pedicure';
