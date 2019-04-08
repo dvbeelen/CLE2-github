@@ -45,7 +45,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-?>
 
 
 <head>
@@ -86,7 +85,7 @@ if (isset($_POST['submit'])) {
 
 
         <div class="data-submit">
-            <input id ="sendButton" type="submit" name="submit" value="Log in"/>
+            <input class ="sendButton" type="submit" name="submit" value="Log in"/>
         </div>
     </form>
 </div>

@@ -31,6 +31,6 @@
     <h2 id="confirmTextH"> Uw Afspraak is gemaakt.</h2>
     <p class="confirmTextP">Bedankt! Uw afspraak is gemaakt en is succesvol bij ons ontvangen. <br>
         U heeft van ons een e-mail ontvangen met daarin alle informatie voor uw afspraak. <br>
-        Wij zien u graag binnekort in de praktijk.</p>
+        Wij zien u graag binnenkort in de praktijk.</p>
 
 </div>

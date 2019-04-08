@@ -56,6 +56,7 @@ mysqli_close($db);
 </header>
 <!--Redirect user to page where a new appointment can be created.-->
 <button id ="newAp"><a href="apForm.php"> Nieuwe afspraak </a></button>
+<button id ="newAddmin"><a href="addAdmin.php"> Nieuwe admin toevoegen </a></button>
 
 <!--Results from database-query is looped into the table-->
 <table>

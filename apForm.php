@@ -77,7 +77,7 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
                             $mail->Subject = 'Uw afspraak voor '.$apDate.'.'; //Subject of the e-mail
                             $mail->Body ='Beste '.$firstname.', <br> <br>
                              U ontvangt deze mail ter bevestiging van uw afspraak. Uw afspraak staat gepland op '.$apDate.' om '.$apTime.' <br> <br>
-                            Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer  06-40303008 <br> <br>
+                            Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer  06-xxxxxxx <br> <br>
                             Ik zie u graag binnenkort in de praktijk. <br> <br>
                             Met vriendelijke groet, <br>
                             Didy Pedicure';
@@ -165,7 +165,7 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 
 
         <div class="data-submit">
-            <input id ="sendButton" type="submit" name="submit" value="Verstuur"/>
+            <input class ="sendButton" type="submit" name="submit" value="Verstuur"/>
         </div>
     </form>
 

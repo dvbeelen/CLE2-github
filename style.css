@@ -142,7 +142,7 @@ footer{
     text-align: center;
 }
 
-#sendButton{
+.sendButton{
     color: white;
     text-align: center;
     padding: 10px;
@@ -198,5 +198,16 @@ th, td{
 }
 
 #overviewHeader{
+    text-align: center;
+}
+
+#addAdmin{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+}
+
+#addAdminTitle{
     text-align: center;
 }

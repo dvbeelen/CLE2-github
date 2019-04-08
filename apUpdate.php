@@ -111,7 +111,7 @@ mysqli_close($db);
 
         <div class="data-submit">
             <input type="hidden" name="id" value="<?= $apid; ?>"/>
-            <input id ="sendButton" type="submit" name="submit" value="Verstuur"/>
+            <input class ="sendButton" type="submit" name="submit" value="Verstuur"/>
         </div>
     </form>
 
