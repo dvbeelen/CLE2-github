@@ -8,7 +8,7 @@ if (!isset($_SESSION['login'])){
 }
 
 //Connect to database.
-$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
+$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 
 //Get the result set from the database with an SQL query
 $query = "SELECT * FROM reservations";

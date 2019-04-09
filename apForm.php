@@ -4,9 +4,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'phpmailer/vendor/autoload.php';
 
-//Connect to database
-$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
+//include settings.php
+require 'includes/settings.php';
 
+//Connect to database
+$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 
 //If the form is submitted, the following tasks are performed
     if (isset($_POST['submit'])) {
@@ -63,12 +65,12 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
                             $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
                             $mail->Host = "smtp.gmail.com";
                             $mail->Port = 465; // or 58
-                            $mail->Username = '0959940hr@gmail.com';                 // SMTP username
-                            $mail->Password = 'g31h3m_ww';                           // SMTP password
+                            $mail->Username = $mailUser;                 // SMTP username
+                            $mail->Password = $mailPassword;                           // SMTP password
 
 
                             //
-                            $mail->setFrom('0959940hr@gmail.com', 'D van Beelen');
+                            $mail->setFrom($mailUser, 'D van Beelen');
                             $mail->addAddress($email, $firstname);
 
 
@@ -165,7 +167,7 @@ $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
 
 
         <div class="data-submit">
-            <input class ="sendButton" type="submit" name="submit" value="Verstuur"/>
+            <input id ="sendButton" type="submit" name="submit" value="Verstuur"/>
         </div>
     </form>
 

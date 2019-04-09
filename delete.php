@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])){
 
 $email = $_SESSION['login'];
 
-$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
+$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 $apId = $_GET['id'];
 
 //Here, the appointment is deleted.

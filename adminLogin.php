@@ -2,7 +2,7 @@
 session_start();
 
 //Connect to database
-$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
+$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 
 //If user is already logged in, this page is skipped.
 if (isset($_SESSION['login'])) {
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
 
 
         <div class="data-submit">
-            <input class ="sendButton" type="submit" name="submit" value="Log in"/>
+            <input id ="sendButton" type="submit" name="submit" value="Log in"/>
         </div>
     </form>
 </div>

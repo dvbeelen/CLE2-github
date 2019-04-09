@@ -142,7 +142,7 @@ footer{
     text-align: center;
 }
 
-.sendButton{
+#sendButton{
     color: white;
     text-align: center;
     padding: 10px;

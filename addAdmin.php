@@ -8,7 +8,7 @@ if (!isset($_SESSION['login'])){
 
 if (isset($_POST['submit'])) {
 //Connect to database
-    $db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
+$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 
  
 // The data filled in in the form is send to the database. 
@@ -62,7 +62,7 @@ if (empty($email) || empty($password)){
         en heeft de bevoegdheid om de afspraken in dit overzicht te wijzigen of te verwijderen. </p>
     <input type="text" name="email" value=""/> <br>
     <input type="password" name="password" value=""/> <br>
-    <input class="sendButton" type="submit" name="submit" value="verzenden"/>
+    <input id="sendButton" type="submit" name="submit" value="verzenden"/>
 </form>
 </body>
 </html>
