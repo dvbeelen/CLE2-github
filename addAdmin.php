@@ -8,6 +8,10 @@ if (!isset($_SESSION['login'])){
 
 if (isset($_POST['submit'])) {
 //Connect to database
+
+//include settings.php
+require 'includes/settings.php';
+
 $db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 
  

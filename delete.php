@@ -1,11 +1,14 @@
 <?php
 session_start();
 
-//May I even visit this page?
+//Check if user is logged in, else redirect to login
 if (!isset($_SESSION['login'])){
     header('Location: login.php');
     exit;
 }
+
+//include settings.php
+require 'includes/settings.php';
 
 $email = $_SESSION['login'];
 

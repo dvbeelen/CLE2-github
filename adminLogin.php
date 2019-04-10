@@ -1,17 +1,20 @@
 <?php
 session_start();
 
-//Connect to database
-$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
-
 //If user is already logged in, this page is skipped.
 if (isset($_SESSION['login'])) {
     header("Location: apOverview.php");
     exit;
 }
+else{
+//include settings.php
+require 'includes/settings.php';
+
+//Connect to database
+$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
+
 //If form is posted, the given user-information is validated.
 if (isset($_POST['submit'])) {
-
     //Retrieve values
     $email = mysqli_escape_string($db, $_POST['email']);
     $password = $_POST['password'];
@@ -43,6 +46,7 @@ if (isset($_POST['submit'])) {
     } else {
         $errors[] = 'Er bestaat geen account dat aan dit e-mailadres gekoppeld is';
     }
+}
 }
 ?>
 
@@ -76,7 +80,7 @@ if (isset($_POST['submit'])) {
 </header>
 
 <div class= "appointForm">
-    <form class="form" action="<<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>" method="post">
+    <form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <label for="email" >E-mail: </label> <br>
         <input type="email" id="email" name="email" value="<?= isset($email) ? $email : '' ?>"> <br>
 

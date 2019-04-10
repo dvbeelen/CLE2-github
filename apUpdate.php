@@ -7,8 +7,15 @@ if (!isset($_SESSION['login'])){
     exit;
 }
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'phpmailer/vendor/autoload.php';
+
+//include settings.php
+require 'includes/settings.php';
+
 //Connect to database.
-$db = mysqli_connect('sql.hosted.hr.nl', '0959940', 'goleodou', '0959940');
+$db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 
 if (isset($_POST['submit'])) {
     $apid = mysqli_escape_string($db, $_POST['id']);
@@ -36,6 +43,47 @@ if (isset($_POST['submit'])) {
 
         if ($result) {
             header('Location: apOverview.php');
+            $mail = new PHPMailer(true);
+            try {
+                //Server settings
+                $mail->IsSMTP(); // enable SMTP
+                $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+                $mail->SMTPAuth = true; // authentication enabled
+                $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+                $mail->Host = "smtp.gmail.com";
+                $mail->Port = 465; // or 58
+                $mail->Username = $mailUser;                 // SMTP username
+                $mail->Password = $mailPassword;                           // SMTP password
+
+
+                //
+                $mail->setFrom($mailUser, 'D van Beelen');
+                $mail->addAddress($email, $firstname);
+
+
+                //This is the body and content of the e-mail
+                $mail->isHTML(true); // The e-mail is now sent in an HTML format
+                $mail->Subject = 'Uw afspraak voor '.$apDate.'.'; //Subject of the e-mail
+                $mail->Body ='Beste '.$firstname.', <br> <br>
+                 U ontvangt deze mail ter bevestiging van uw afspraak. Uw afspraak staat gepland op '.$apDate.' om '.$apTime.' <br> <br>
+                Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer  06-xxxxxxx <br> <br>
+                Ik zie u graag binnenkort in de praktijk. <br> <br>
+                Met vriendelijke groet, <br>
+                Didy Pedicure';
+
+                $mail->AltBody = 'Beste '.$firstname.', <br> <br>
+                U ontvangt deze mail ter bevestiging van uw afspraak. Uw afspraak staat gepland op '.$apDate.' om '.$apTime.' <br> <br>
+                Als u uw afspraak wilt afzeggen of wijzijgen, kunt u contact met mij opnemen via het telefoonnummer 06-xxxxxxxx <br> <br>
+                Ik zie u graag binnenkort in de praktijk. <br> <br>
+                Met vriendelijke groet, <br>
+                Didy Pedicure';
+
+                $mail->send();
+//                            echo 'Message has been sent';
+                } catch (Exception $e) {
+//                            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                }
+
         } else {
             $errors[] = 'Something went wrong in your database query: ' . mysqli_error($db);
         }

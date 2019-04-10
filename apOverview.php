@@ -7,6 +7,9 @@ if (!isset($_SESSION['login'])){
     exit;
 }
 
+//include settings.php
+require 'includes/settings.php';
+
 //Connect to database.
 $db = mysqli_connect($host, $dbUser, $dbPassword, $table);
 
