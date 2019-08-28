@@ -1,4 +1,4 @@
-#Appointment-App CLE 2
+# Appointment-App CLE 2
 
 This repository was created for a school assignment. For this assignment, an appointment application had to be build. 
 This application uses HTML, CSS, JavaScript, PHP, PHPMailer and MySQL.
